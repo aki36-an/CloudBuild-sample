@@ -12,7 +12,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 	switch path {
 	case "/":
-		fmt.Fprintf(w, "Hello Docker World")
+		fmt.Fprintf(w, "Hello Docker World !!")
 	default:
 	}
 }
