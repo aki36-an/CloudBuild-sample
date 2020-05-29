@@ -3,13 +3,13 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build',
          '-t',
-         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$SHORT_SHA',
+         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$REVISION_ID',
          '.']
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push',
-         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$SHORT_SHA']
+         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$REVISION_ID']
 
 # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -17,7 +17,7 @@ steps:
          'deploy',
          'cloudbuild-sample',
          '--image',
-         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$SHORT_SHA',
+         'asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$REVISION_ID',
          '--region',
          'asia-northeast1',
          '--platform',
@@ -25,4 +25,4 @@ steps:
          '--allow-unauthenticated']
 
 images:
-- asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$SHORT_SHA
+- asia.gcr.io/$PROJECT_ID/cloudbuild-sample:$REVISION_ID
